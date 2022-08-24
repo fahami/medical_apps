@@ -3,10 +3,10 @@ import 'package:get/get.dart';
 import 'package:medical_apps/core/theme/color_theme.dart';
 import 'package:medical_apps/core/theme/text_theme.dart';
 import 'package:medical_apps/core/values/values.dart';
-import 'package:medical_apps/modules/home/home_controller.dart';
+import 'package:medical_apps/modules/profile/profile_controller.dart';
 
-class ProductFilter extends GetView<HomeController> {
-  const ProductFilter({Key? key}) : super(key: key);
+class ProfileTab extends GetView<ProfileController> {
+  const ProfileTab({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -18,25 +18,23 @@ class ProductFilter extends GetView<HomeController> {
         itemBuilder: (context, index) {
           return ActionChip(
             pressElevation: 0,
-            backgroundColor: controller.selectedMenu.value == index
-                ? ThemeColor.navy
+            backgroundColor: controller.selectedTab.value == index
+                ? ThemeColor.turquoise
                 : ThemeColor.white,
             labelStyle: ThemeText.bodyText.copyWith(
-                color: controller.selectedMenu.value == index
-                    ? ThemeColor.white
-                    : ThemeColor.navy,
+                color: ThemeColor.navy,
                 fontWeight: FontWeight.w700,
                 fontFamily: 'Proxima Nova'),
-            label: Text(controller.menus[index]),
+            label: Text(controller.tabs[index]),
             onPressed: () {
-              controller.selectedMenu.value = index;
-              print(controller.menus[index] +
-                  " pressed ${controller.selectedMenu}");
+              controller.selectedTab.value = index;
+              print(controller.tabs[index] +
+                  " pressed ${controller.selectedTab}");
             },
           );
         },
         separatorBuilder: (_, __) => const SizedBox(width: 8),
-        itemCount: controller.menus.length,
+        itemCount: controller.tabs.length,
       ),
     );
   }

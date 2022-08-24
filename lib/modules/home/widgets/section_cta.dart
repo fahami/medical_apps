@@ -54,8 +54,6 @@ class CtaSection extends StatelessWidget {
       const SizedBox(width: Values.horizontalPadding),
       Expanded(
         child: Container(
-          // height: 80,
-
           transform: Matrix4.translationValues(0, -40, 0),
           child: SvgPicture.asset(
             vectorImage,

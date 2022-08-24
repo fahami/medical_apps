@@ -69,7 +69,7 @@ class LoginScreen extends StatelessWidget {
                           icon: Icon(Icons.remove_red_eye_outlined))),
                   SizedBox(height: 40),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () => Get.toNamed(Routes.home),
                     child: Row(
                       children: [
                         Expanded(

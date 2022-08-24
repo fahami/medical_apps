@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       title: 'Medical Apps',
       theme: ThemeApp.light,
       getPages: AppPages.pages,
-      initialRoute: Routes.home,
+      initialRoute: Routes.login,
     );
   }
 }

@@ -10,7 +10,11 @@ class CustomAppBar extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
+        IconButton(
+            onPressed: () {
+              Scaffold.of(context).openEndDrawer();
+            },
+            icon: const Icon(Icons.menu)),
         Row(
           children: [
             IconButton(onPressed: () {}, icon: const Icon(Icons.shopping_cart)),

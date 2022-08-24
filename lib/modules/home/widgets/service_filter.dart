@@ -5,8 +5,8 @@ import 'package:medical_apps/core/theme/text_theme.dart';
 import 'package:medical_apps/core/values/values.dart';
 import 'package:medical_apps/modules/home/home_controller.dart';
 
-class ProductFilter extends GetView<HomeController> {
-  const ProductFilter({Key? key}) : super(key: key);
+class ServiceFilter extends GetView<HomeController> {
+  const ServiceFilter({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -18,25 +18,23 @@ class ProductFilter extends GetView<HomeController> {
         itemBuilder: (context, index) {
           return ActionChip(
             pressElevation: 0,
-            backgroundColor: controller.selectedMenu.value == index
-                ? ThemeColor.navy
+            backgroundColor: controller.selectedService.value == index
+                ? ThemeColor.turquoise
                 : ThemeColor.white,
             labelStyle: ThemeText.bodyText.copyWith(
-                color: controller.selectedMenu.value == index
-                    ? ThemeColor.white
-                    : ThemeColor.navy,
+                color: ThemeColor.navy,
                 fontWeight: FontWeight.w700,
                 fontFamily: 'Proxima Nova'),
-            label: Text(controller.menus[index]),
+            label: Text(controller.services[index]),
             onPressed: () {
-              controller.selectedMenu.value = index;
-              print(controller.menus[index] +
-                  " pressed ${controller.selectedMenu}");
+              controller.selectedService.value = index;
+              print(controller.services[index] +
+                  " pressed ${controller.selectedService}");
             },
           );
         },
         separatorBuilder: (_, __) => const SizedBox(width: 8),
-        itemCount: controller.menus.length,
+        itemCount: controller.services.length,
       ),
     );
   }

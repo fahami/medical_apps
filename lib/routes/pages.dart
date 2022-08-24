@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 import 'package:medical_apps/modules/home/home_binding.dart';
 import 'package:medical_apps/modules/home/home_screen.dart';
 import 'package:medical_apps/modules/login/login_screen.dart';
+import 'package:medical_apps/modules/profile/profile_binding.dart';
+import 'package:medical_apps/modules/profile/profile_screen.dart';
 import 'package:medical_apps/modules/register/register_screen.dart';
 import 'package:medical_apps/routes/routes.dart';
 
@@ -19,6 +21,11 @@ class AppPages {
       name: Routes.home,
       page: () => const HomeScreen(),
       binding: HomeBinding(),
+    ),
+    GetPage(
+      name: Routes.profile,
+      page: () => const ProfileScreen(),
+      binding: ProfileBinding(),
     ),
   ];
 }
