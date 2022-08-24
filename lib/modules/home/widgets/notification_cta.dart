@@ -37,14 +37,15 @@ class NotificationCTA extends StatelessWidget {
             child: Row(
               children: [
                 Expanded(
-                    child: Text(
-                  'Ingin mendapat update dari kami ?',
-                  style: ThemeText.heading6.copyWith(
-                    fontWeight: FontWeight.w600,
-                    color: ThemeColor.white,
+                  child: Text(
+                    'Ingin mendapat update dari kami ?',
+                    style: ThemeText.heading6.copyWith(
+                      fontWeight: FontWeight.w600,
+                      color: ThemeColor.white,
+                    ),
                   ),
-                )),
-                SizedBox(width: 24),
+                ),
+                const SizedBox(width: 24),
                 Expanded(
                   child: TextButton.icon(
                     icon: Text(

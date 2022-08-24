@@ -68,10 +68,11 @@ class HomeScreen extends GetView<HomeController> {
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(100)),
                             child: IconButton(
-                                onPressed: () {
-                                  print("open setting");
-                                },
-                                icon: const Icon(Icons.tune)),
+                              onPressed: () {
+                                print('open setting');
+                              },
+                              icon: const Icon(Icons.tune),
+                            ),
                           ),
                           const SizedBox(width: Values.horizontalPadding),
                           const SearchField()
@@ -82,70 +83,77 @@ class HomeScreen extends GetView<HomeController> {
                   const ProductFilter(),
                   CarouselSlider(
                     items: controller.products
-                        .map((product) => Container(
-                              margin: const EdgeInsets.only(right: 16),
-                              padding: const EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                  color: ThemeColor.white,
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10)),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: ThemeColor.shadow.withAlpha(50),
-                                      blurRadius: 10,
-                                      offset: const Offset(0, 10),
-                                    )
-                                  ]),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      const Icon(Icons.star,
-                                          color: Colors.yellow),
-                                      Text(
-                                        product.rating.toString(),
-                                        style:
-                                            ThemeText.disabledText.copyWith(),
-                                      )
-                                    ],
-                                  ),
-                                  Center(child: Image.asset(product.image)),
-                                  Text(product.name,
-                                      style: ThemeText.heading7.copyWith(
-                                        fontWeight: FontWeight.w600,
-                                      )),
-                                  const SizedBox(height: 4),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        simpleIDR(product.price),
-                                        style: ThemeText.bodyText.copyWith(
-                                          color: ThemeColor.orange,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                      Chip(
-                                        padding: EdgeInsets.zero,
-                                        materialTapTargetSize:
-                                            MaterialTapTargetSize.shrinkWrap,
-                                        visualDensity: VisualDensity.compact,
-                                        label: Text(product.category),
-                                        backgroundColor: ThemeColor.lightGreen,
-                                        labelStyle: ThemeText.bodyText.copyWith(
-                                          color: ThemeColor.green,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ],
+                        .map(
+                          (product) => Container(
+                            margin: const EdgeInsets.only(right: 16),
+                            padding: const EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              color: ThemeColor.white,
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(10),
                               ),
-                            ))
+                              boxShadow: [
+                                BoxShadow(
+                                  color: ThemeColor.shadow.withAlpha(50),
+                                  blurRadius: 10,
+                                  offset: const Offset(0, 10),
+                                )
+                              ],
+                            ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    const Icon(
+                                      Icons.star,
+                                      color: Colors.yellow,
+                                    ),
+                                    Text(
+                                      product.rating.toString(),
+                                      style: ThemeText.disabledText.copyWith(),
+                                    )
+                                  ],
+                                ),
+                                Center(child: Image.asset(product.image)),
+                                Text(
+                                  product.name,
+                                  style: ThemeText.heading7.copyWith(
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                const SizedBox(height: 4),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      simpleIDR(product.price),
+                                      style: ThemeText.bodyText.copyWith(
+                                        color: ThemeColor.orange,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    Chip(
+                                      padding: EdgeInsets.zero,
+                                      materialTapTargetSize:
+                                          MaterialTapTargetSize.shrinkWrap,
+                                      visualDensity: VisualDensity.compact,
+                                      label: Text(product.category),
+                                      backgroundColor: ThemeColor.lightGreen,
+                                      labelStyle: ThemeText.bodyText.copyWith(
+                                        color: ThemeColor.green,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
                         .toList(),
                     options: CarouselOptions(
                       aspectRatio: 1,
@@ -158,16 +166,20 @@ class HomeScreen extends GetView<HomeController> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Pilih Tipe Layanan Kesehatan Anda',
-                          style: ThemeText.baseStyle.copyWith(
-                              fontWeight: FontWeight.w600, fontSize: 18)),
+                      Text(
+                        'Pilih Tipe Layanan Kesehatan Anda',
+                        style: ThemeText.baseStyle.copyWith(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18,
+                        ),
+                      ),
                       const SizedBox(height: 8),
                     ],
                   ).paddingSymmetric(horizontal: Values.horizontalPadding),
                   const ServiceFilter(),
-                  ServiceList(),
+                  const ServiceList(),
                   const SizedBox(height: 48),
-                  NotificationCTA()
+                  const NotificationCTA()
                 ],
               ),
             ),

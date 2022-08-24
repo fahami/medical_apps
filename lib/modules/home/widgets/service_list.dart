@@ -37,15 +37,20 @@ class ServiceList extends GetView<HomeController> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(faskes.serviceName,
-                        style: ThemeText.baseStyle.copyWith(
-                            fontWeight: FontWeight.w600, fontSize: 18)),
+                    Text(
+                      faskes.serviceName,
+                      style: ThemeText.baseStyle.copyWith(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 18,
+                      ),
+                    ),
                     const SizedBox(height: 16),
                     Text(
                       simpleIDR(faskes.price),
                       style: ThemeText.heading6.copyWith(
-                          color: ThemeColor.orange,
-                          fontWeight: FontWeight.w600),
+                        color: ThemeColor.orange,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                     const SizedBox(height: 16),
                     Row(
@@ -73,17 +78,18 @@ class ServiceList extends GetView<HomeController> {
                 ).paddingAll(Values.horizontalPadding),
               ),
               Expanded(
-                  flex: 2,
-                  child: Container(
-                    height: 200,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(faskes.image),
-                          fit: BoxFit.cover,
-                        ),
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(16))),
-                  )),
+                flex: 2,
+                child: Container(
+                  height: 200,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(faskes.image),
+                      fit: BoxFit.cover,
+                    ),
+                    borderRadius: const BorderRadius.all(Radius.circular(16)),
+                  ),
+                ),
+              ),
             ],
           ),
         );

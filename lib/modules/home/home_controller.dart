@@ -15,34 +15,34 @@ class HomeController extends GetxController {
   var selectedService = 0.obs;
   var products = [
     Product(
-      name: "Suntik Steril",
-      image: "assets/images/png/mikroskop.png",
+      name: 'Suntik Steril',
+      image: 'assets/images/png/mikroskop.png',
       price: 10000,
-      category: "All Product",
+      category: 'All Product',
       rating: 5,
       isReady: true,
     ),
     Product(
-      name: "Suntik Steril",
-      image: "assets/images/png/mikroskop.png",
+      name: 'Suntik Steril',
+      image: 'assets/images/png/mikroskop.png',
       price: 10000,
-      category: "All Product",
+      category: 'All Product',
       rating: 5,
       isReady: true,
     ),
     Product(
-      name: "Suntik Steril",
-      image: "assets/images/png/mikroskop.png",
+      name: 'Suntik Steril',
+      image: 'assets/images/png/mikroskop.png',
       price: 10000,
-      category: "All Product",
+      category: 'All Product',
       rating: 5,
       isReady: true,
     ),
     Product(
-      name: "Suntik Steril",
-      image: "assets/images/png/mikroskop.png",
+      name: 'Suntik Steril',
+      image: 'assets/images/png/mikroskop.png',
       price: 10000,
-      category: "All Product",
+      category: 'All Product',
       rating: 5,
       isReady: true,
     ),
@@ -50,19 +50,19 @@ class HomeController extends GetxController {
 
   var socialMedia = [
     {
-      "name": "Facebook",
-      "image": "assets/images/svg/facebook.svg",
-      "url": "https://www.facebook.com"
+      'name': 'Facebook',
+      'image': 'assets/images/svg/facebook.svg',
+      'url': 'https://www.facebook.com'
     },
     {
-      "name": "Instagram",
-      "image": "assets/images/svg/instagram.svg",
-      "url": "https://www.instagram.com"
+      'name': 'Instagram',
+      'image': 'assets/images/svg/instagram.svg',
+      'url': 'https://www.instagram.com'
     },
     {
-      "name": "Twitter",
-      "image": "assets/images/svg/twitter.svg",
-      "url": "https://www.twitter.com"
+      'name': 'Twitter',
+      'image': 'assets/images/svg/twitter.svg',
+      'url': 'https://www.twitter.com'
     },
   ].obs;
 

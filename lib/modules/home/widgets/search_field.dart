@@ -9,14 +9,15 @@ class SearchField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-        child: CustomTextField(
-      hint: 'Search',
-      borderRadius: 100,
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(100),
-        borderSide: BorderSide.none,
+      child: CustomTextField(
+        hint: 'Search',
+        borderRadius: 100,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(100),
+          borderSide: BorderSide.none,
+        ),
+        suffixIcon: const Icon(Icons.search),
       ),
-      suffixIcon: const Icon(Icons.search),
-    ));
+    );
   }
 }

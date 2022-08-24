@@ -21,7 +21,7 @@ class HomeMainBanner extends StatelessWidget {
           ),
         ],
         gradient: LinearGradient(
-          stops: [0.5, 0.99],
+          stops: const [0.5, 0.99],
           colors: [
             ThemeColor.white,
             ThemeColor.greyBlue,
@@ -38,16 +38,25 @@ class HomeMainBanner extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 RichText(
-                    text: TextSpan(children: [
-                  TextSpan(
-                      text: 'Solusi,',
-                      style: ThemeText.baseStyle
-                          .copyWith(fontWeight: FontWeight.w600, fontSize: 18)),
-                  TextSpan(
-                      text: ' Kesehatan Anda',
-                      style: ThemeText.baseStyle
-                          .copyWith(fontWeight: FontWeight.w800, fontSize: 18)),
-                ])),
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                        text: 'Solusi,',
+                        style: ThemeText.baseStyle.copyWith(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18,
+                        ),
+                      ),
+                      TextSpan(
+                        text: ' Kesehatan Anda',
+                        style: ThemeText.baseStyle.copyWith(
+                          fontWeight: FontWeight.w800,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 const SizedBox(height: 8),
                 const Text(
                   'Update informasi seputar kesehatan semua bisa disini !',

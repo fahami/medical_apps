@@ -23,15 +23,17 @@ class CtaSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> content = [
+    final List<Widget> content = [
       Expanded(
         flex: 2,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(title,
-                style: ThemeText.baseStyle
-                    .copyWith(fontWeight: FontWeight.w600, fontSize: 18)),
+            Text(
+              title,
+              style: ThemeText.baseStyle
+                  .copyWith(fontWeight: FontWeight.w600, fontSize: 18),
+            ),
             const SizedBox(height: 8),
             Text(
               description,

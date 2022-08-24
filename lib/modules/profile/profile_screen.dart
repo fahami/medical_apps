@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:medical_apps/core/theme/color_theme.dart';
 import 'package:medical_apps/core/theme/text_theme.dart';
@@ -7,13 +6,15 @@ import 'package:medical_apps/core/values/values.dart';
 import 'package:medical_apps/modules/home/widgets/app_bar.dart';
 import 'package:medical_apps/modules/home/widgets/drawer.dart';
 import 'package:medical_apps/modules/home/widgets/notification_cta.dart';
+import 'package:medical_apps/modules/profile/profile_controller.dart';
 import 'package:medical_apps/modules/profile/widgets/profile_card.dart';
 import 'package:medical_apps/modules/profile/widgets/profile_tab.dart';
 import 'package:medical_apps/widgets/custom_textfield.dart';
 import 'package:medical_apps/widgets/custom_textfield_label.dart';
 
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+class ProfileScreen extends GetView<ProfileController> {
+  ProfileScreen({Key? key}) : super(key: key);
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -27,11 +28,12 @@ class ProfileScreen extends StatelessWidget {
             Expanded(
               child: ListView(
                 children: [
-                  Center(child: const ProfileTab()),
+                  const Center(child: ProfileTab()),
                   Container(
                     margin: const EdgeInsets.symmetric(
-                        horizontal: Values.horizontalPadding),
-                    padding: EdgeInsets.only(bottom: 24),
+                      horizontal: Values.horizontalPadding,
+                    ),
+                    padding: const EdgeInsets.only(bottom: 24),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
                       boxShadow: [
@@ -47,8 +49,8 @@ class ProfileScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        ProfileCard(),
-                        SizedBox(height: 16),
+                        const ProfileCard(),
+                        const SizedBox(height: 16),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -59,21 +61,22 @@ class ProfileScreen extends StatelessWidget {
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                            SizedBox(height: 16),
+                            const SizedBox(height: 16),
                             Row(
                               children: [
                                 Material(
                                   color: ThemeColor.turquoise,
                                   borderRadius: const BorderRadius.all(
-                                      Radius.circular(100)),
+                                    Radius.circular(100),
+                                  ),
                                   child: IconButton(
-                                      onPressed: () {
-                                        print("open setting");
-                                      },
-                                      icon:
-                                          const Icon(Icons.person_pin_rounded)),
+                                    onPressed: () {
+                                      print('open setting');
+                                    },
+                                    icon: const Icon(Icons.person_pin_rounded),
+                                  ),
                                 ),
-                                SizedBox(width: 16),
+                                const SizedBox(width: 16),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -92,45 +95,117 @@ class ProfileScreen extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                SizedBox(width: 16),
+                                const SizedBox(width: 16),
                                 Material(
                                   color: ThemeColor.textSecondary,
                                   borderRadius: const BorderRadius.all(
-                                      Radius.circular(100)),
+                                    Radius.circular(100),
+                                  ),
                                   child: IconButton(
-                                      onPressed: () {
-                                        print("open setting");
-                                      },
-                                      color: ThemeColor.textDisabled,
-                                      icon: const Icon(Icons.location_pin)),
+                                    onPressed: () {
+                                      print('open setting');
+                                    },
+                                    color: ThemeColor.textDisabled,
+                                    icon: const Icon(Icons.location_pin),
+                                  ),
                                 ),
                               ],
                             ),
-                            SizedBox(height: 36),
-                            CustomLabel(label: 'Nama Depan'),
-                            SizedBox(height: 8),
-                            CustomTextField(
-                              hint: 'Nama depan',
+                            const SizedBox(height: 36),
+                            AutofillGroup(
+                              child: Form(
+                                key: _formKey,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const CustomLabel(label: 'Nama Depan'),
+                                    const SizedBox(height: 8),
+                                    CustomTextField(
+                                      hint: 'Nama depan',
+                                      keyboardType: TextInputType.name,
+                                      autofillHints: const [
+                                        AutofillHints.namePrefix
+                                      ],
+                                      validator: (v) {
+                                        if (v!.isEmpty) {
+                                          return 'Nama depan tidak boleh kosong';
+                                        }
+                                        return null;
+                                      },
+                                    ),
+                                    const SizedBox(height: 16),
+                                    const CustomLabel(label: 'Nama Belakang'),
+                                    const SizedBox(height: 8),
+                                    CustomTextField(
+                                      hint: 'Nama belakang',
+                                      keyboardType: TextInputType.name,
+                                      autofillHints: const [
+                                        AutofillHints.nameSuffix
+                                      ],
+                                      validator: (v) {
+                                        if (v!.isEmpty) {
+                                          return 'Nama belakang tidak boleh kosong';
+                                        }
+                                        return null;
+                                      },
+                                    ),
+                                    const SizedBox(height: 16),
+                                    const CustomLabel(label: 'Email'),
+                                    const SizedBox(height: 8),
+                                    CustomTextField(
+                                      hint: 'Masukkan email anda',
+                                      keyboardType: TextInputType.emailAddress,
+                                      autofillHints: const [
+                                        AutofillHints.email
+                                      ],
+                                      validator: (v) {
+                                        if (v!.isEmpty) {
+                                          return 'Email tidak boleh kosong';
+                                        } else if (!GetUtils.isEmail(v)) {
+                                          return 'Email tidak valid';
+                                        }
+                                        return null;
+                                      },
+                                    ),
+                                    const SizedBox(height: 16),
+                                    const CustomLabel(label: 'No. Telpon'),
+                                    const SizedBox(height: 8),
+                                    CustomTextField(
+                                      hint: 'Masukkan no telpon anda',
+                                      keyboardType: TextInputType.phone,
+                                      autofillHints: const [
+                                        AutofillHints.telephoneNumber,
+                                        AutofillHints.telephoneNumberDevice
+                                      ],
+                                      validator: (v) {
+                                        if (v!.isEmpty) {
+                                          return 'Nomor telepon tidak boleh kosong';
+                                        } else if (!GetUtils.isPhoneNumber(v)) {
+                                          return 'Nomor telepon tidak valid';
+                                        }
+                                        return null;
+                                      },
+                                    ),
+                                    const SizedBox(height: 16),
+                                    const CustomLabel(label: 'No. KTP'),
+                                    const SizedBox(height: 8),
+                                    CustomTextField(
+                                      hint: 'Masukkan No. KTP anda',
+                                      keyboardType: TextInputType.number,
+                                      validator: (v) {
+                                        if (v!.isEmpty) {
+                                          return 'No. KTP tidak boleh kosong';
+                                        } else if (v.length > 16) {
+                                          return 'No. KTP tidak boleh lebih dari 16 karakter';
+                                        }
+                                        return null;
+                                      },
+                                    ),
+                                    const SizedBox(height: 16),
+                                  ],
+                                ),
+                              ),
                             ),
-                            SizedBox(height: 16),
-                            CustomLabel(label: 'Nama Belakang'),
-                            SizedBox(height: 8),
-                            CustomTextField(
-                              hint: 'Nama belakang',
-                            ),
-                            SizedBox(height: 16),
-                            CustomLabel(label: 'Email'),
-                            SizedBox(height: 8),
-                            CustomTextField(hint: 'Masukkan email anda'),
-                            SizedBox(height: 16),
-                            CustomLabel(label: 'No. Telpon'),
-                            SizedBox(height: 8),
-                            CustomTextField(hint: 'Masukkan no telpon anda'),
-                            SizedBox(height: 16),
-                            CustomLabel(label: 'No. KTP'),
-                            SizedBox(height: 8),
-                            CustomTextField(hint: 'Masukkan No. KTP anda'),
-                            SizedBox(height: 16),
                             ListTile(
                               leading: Icon(
                                 Icons.info,
@@ -142,11 +217,15 @@ class ProfileScreen extends StatelessWidget {
                                 style: ThemeText.disabledText,
                               ),
                             ),
-                            SizedBox(height: 16),
+                            const SizedBox(height: 16),
                             ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                if (_formKey.currentState!.validate()) {
+                                  print('validate');
+                                }
+                              },
                               child: Row(
-                                children: [
+                                children: const [
                                   Expanded(
                                     child: Text(
                                       'Simpan Profile',
@@ -159,12 +238,13 @@ class ProfileScreen extends StatelessWidget {
                             ),
                           ],
                         ).paddingSymmetric(
-                            horizontal: Values.horizontalPadding),
+                          horizontal: Values.horizontalPadding,
+                        ),
                       ],
                     ),
                   ),
-                  SizedBox(height: Values.horizontalPadding),
-                  NotificationCTA()
+                  const SizedBox(height: Values.horizontalPadding),
+                  const NotificationCTA()
                 ],
               ),
             ),

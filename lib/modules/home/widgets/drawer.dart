@@ -19,7 +19,7 @@ class MenuDrawer extends GetView<HomeController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
+            SizedBox(
               width: 180,
               child: Column(
                 children: [
@@ -27,23 +27,28 @@ class MenuDrawer extends GetView<HomeController> {
                     children: [
                       const CircleAvatar(
                         backgroundImage:
-                            const AssetImage('assets/images/jpg/person.jpeg'),
+                            AssetImage('assets/images/jpg/person.jpeg'),
                       ),
                       const SizedBox(width: 8),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           RichText(
-                              text: TextSpan(children: [
-                            TextSpan(
-                                text: 'Angga',
-                                style: ThemeText.heading7
-                                    .copyWith(fontWeight: FontWeight.w800)),
-                            TextSpan(
-                                text: ' Praja',
-                                style: ThemeText.heading7
-                                    .copyWith(fontWeight: FontWeight.w600)),
-                          ])),
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'Angga',
+                                  style: ThemeText.heading7
+                                      .copyWith(fontWeight: FontWeight.w800),
+                                ),
+                                TextSpan(
+                                  text: ' Praja',
+                                  style: ThemeText.heading7
+                                      .copyWith(fontWeight: FontWeight.w600),
+                                ),
+                              ],
+                            ),
+                          ),
                           const SizedBox(height: 4),
                           Text(
                             'Membership BBLK',
@@ -93,32 +98,36 @@ class MenuDrawer extends GetView<HomeController> {
                 ),
                 Wrap(
                   children: controller.socialMedia
-                      .map((social) => InkWell(
-                              onTap: () {
-                                launchUrlString(social['url']!);
-                              },
-                              child: SvgPicture.asset(social['image']!))
-                          .marginOnly(right: 8))
+                      .map(
+                        (social) => InkWell(
+                          onTap: () {
+                            launchUrlString(social['url']!);
+                          },
+                          child: SvgPicture.asset(social['image']!),
+                        ).marginOnly(right: 8),
+                      )
                       .toList(),
                 )
               ],
             ),
-            Spacer(),
+            const Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      'FAQ',
-                      style: ThemeText.disabledText,
-                    )),
+                  onPressed: () {},
+                  child: Text(
+                    'FAQ',
+                    style: ThemeText.disabledText,
+                  ),
+                ),
                 TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      'Terms and Conditions',
-                      style: ThemeText.disabledText,
-                    )),
+                  onPressed: () {},
+                  child: Text(
+                    'Terms and Conditions',
+                    style: ThemeText.disabledText,
+                  ),
+                ),
               ],
             )
           ],

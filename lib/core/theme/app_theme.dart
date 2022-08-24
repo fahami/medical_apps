@@ -10,14 +10,13 @@ class ThemeApp {
           secondary: ThemeColor.turquoise,
         ),
     textTheme: TextTheme(
-      subtitle1: ThemeText.heading7.copyWith(fontFamily: 'Proxima Nova'),
-      bodyText2: ThemeText.heading7.copyWith(fontFamily: 'Proxima Nova'),
+      subtitle1: ThemeText.heading7,
+      bodyText2: ThemeText.heading7,
     ),
     toggleableActiveColor: ThemeColor.navy,
     appBarTheme: const AppBarTheme(elevation: 3),
     errorColor: ThemeColor.red,
     scaffoldBackgroundColor: Colors.white,
-
     inputDecorationTheme: InputDecorationTheme(
       hintStyle: ThemeText.bodyText
           .copyWith(color: ThemeColor.textDisabled, fontFamily: 'Proxima Nova'),
@@ -31,7 +30,6 @@ class ThemeApp {
       ),
       iconColor: ThemeColor.navy,
     ),
-
     buttonTheme: ButtonThemeData(
       buttonColor: ThemeColor.navy,
       textTheme: ButtonTextTheme.primary,
@@ -43,23 +41,12 @@ class ThemeApp {
       style: ElevatedButton.styleFrom(
         onPrimary: ThemeColor.white,
         primary: ThemeColor.navy,
-        padding: EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),
       ),
     ),
     iconTheme: IconThemeData(color: ThemeColor.navy),
-
-    // textButtonTheme: TextButtonThemeData(
-    //   style: TextButton.styleFrom(
-    //     backgroundColor: ThemeColor.navy,
-    //     primary: ThemeColor.white,
-    //     padding: EdgeInsets.symmetric(vertical: 12, horizontal: 24),
-    //     shape: RoundedRectangleBorder(
-    //       borderRadius: BorderRadius.circular(8),
-    //     ),
-    //   ),
-    // ),
   );
 }

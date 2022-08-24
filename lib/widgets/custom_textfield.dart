@@ -2,15 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:medical_apps/core/theme/color_theme.dart';
 
 class CustomTextField extends StatelessWidget {
-  const CustomTextField(
-      {Key? key,
-      this.hint,
-      this.label,
-      this.prefixIcon,
-      this.suffixIcon,
-      this.border,
-      this.borderRadius})
-      : super(key: key);
+  const CustomTextField({
+    Key? key,
+    this.hint,
+    this.label,
+    this.prefixIcon,
+    this.suffixIcon,
+    this.border,
+    this.borderRadius,
+    this.validator,
+    this.obscureText = false,
+    this.onChanged,
+    this.keyboardType,
+    this.autofillHints,
+  }) : super(key: key);
 
   final String? hint;
   final String? label;
@@ -18,6 +23,11 @@ class CustomTextField extends StatelessWidget {
   final Widget? suffixIcon;
   final InputBorder? border;
   final double? borderRadius;
+  final String? Function(String?)? validator;
+  final bool obscureText;
+  final void Function(String)? onChanged;
+  final TextInputType? keyboardType;
+  final Iterable<String>? autofillHints;
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -29,6 +39,11 @@ class CustomTextField extends StatelessWidget {
         autovalidateMode: AutovalidateMode.onUserInteraction,
         enableSuggestions: true,
         textAlignVertical: TextAlignVertical.center,
+        validator: validator,
+        obscureText: obscureText,
+        keyboardType: keyboardType,
+        onChanged: onChanged,
+        autofillHints: autofillHints,
         decoration: InputDecoration(
           hintText: hint,
           labelText: label,

@@ -22,14 +22,16 @@ class ProfileTab extends GetView<ProfileController> {
                 ? ThemeColor.turquoise
                 : ThemeColor.white,
             labelStyle: ThemeText.bodyText.copyWith(
-                color: ThemeColor.navy,
-                fontWeight: FontWeight.w700,
-                fontFamily: 'Proxima Nova'),
+              color: ThemeColor.navy,
+              fontWeight: FontWeight.w700,
+              fontFamily: 'Proxima Nova',
+            ),
             label: Text(controller.tabs[index]),
             onPressed: () {
               controller.selectedTab.value = index;
-              print(controller.tabs[index] +
-                  " pressed ${controller.selectedTab}");
+              print(
+                '${controller.tabs[index]} pressed ${controller.selectedTab}',
+              );
             },
           );
         },

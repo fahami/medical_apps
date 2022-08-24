@@ -22,14 +22,16 @@ class ServiceFilter extends GetView<HomeController> {
                 ? ThemeColor.turquoise
                 : ThemeColor.white,
             labelStyle: ThemeText.bodyText.copyWith(
-                color: ThemeColor.navy,
-                fontWeight: FontWeight.w700,
-                fontFamily: 'Proxima Nova'),
+              color: ThemeColor.navy,
+              fontWeight: FontWeight.w700,
+              fontFamily: 'Proxima Nova',
+            ),
             label: Text(controller.services[index]),
             onPressed: () {
               controller.selectedService.value = index;
-              print(controller.services[index] +
-                  " pressed ${controller.selectedService}");
+              print(
+                '${controller.services[index]} pressed ${controller.selectedService}',
+              );
             },
           );
         },

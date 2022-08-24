@@ -22,16 +22,18 @@ class ProductFilter extends GetView<HomeController> {
                 ? ThemeColor.navy
                 : ThemeColor.white,
             labelStyle: ThemeText.bodyText.copyWith(
-                color: controller.selectedMenu.value == index
-                    ? ThemeColor.white
-                    : ThemeColor.navy,
-                fontWeight: FontWeight.w700,
-                fontFamily: 'Proxima Nova'),
+              color: controller.selectedMenu.value == index
+                  ? ThemeColor.white
+                  : ThemeColor.navy,
+              fontWeight: FontWeight.w700,
+              fontFamily: 'Proxima Nova',
+            ),
             label: Text(controller.menus[index]),
             onPressed: () {
               controller.selectedMenu.value = index;
-              print(controller.menus[index] +
-                  " pressed ${controller.selectedMenu}");
+              print(
+                '${controller.menus[index]} pressed ${controller.selectedMenu}',
+              );
             },
           );
         },

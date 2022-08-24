@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:medical_apps/core/theme/color_theme.dart';
 import 'package:medical_apps/core/theme/text_theme.dart';
 import 'package:medical_apps/core/values/values.dart';
+import 'package:medical_apps/modules/register/register_controller.dart';
 import 'package:medical_apps/routes/routes.dart';
 import 'package:medical_apps/widgets/custom_copyright_text.dart';
 import 'package:medical_apps/widgets/custom_textfield.dart';
 import 'package:medical_apps/widgets/custom_textfield_label.dart';
 
-class RegisterScreen extends StatelessWidget {
-  const RegisterScreen({Key? key}) : super(key: key);
+class RegisterScreen extends GetView<RegisterController> {
+  RegisterScreen({Key? key}) : super(key: key);
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -18,16 +21,21 @@ class RegisterScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 24),
           children: [
             RichText(
-                text: TextSpan(children: [
-              TextSpan(
-                  text: 'Hai,',
-                  style:
-                      ThemeText.heading3.copyWith(fontWeight: FontWeight.w600)),
-              TextSpan(
-                  text: ' Selamat Datang',
-                  style:
-                      ThemeText.heading3.copyWith(fontWeight: FontWeight.w800)),
-            ])).paddingSymmetric(horizontal: Values.horizontalPadding),
+              text: TextSpan(
+                children: [
+                  TextSpan(
+                    text: 'Hai,',
+                    style: ThemeText.heading3
+                        .copyWith(fontWeight: FontWeight.w600),
+                  ),
+                  TextSpan(
+                    text: ' Selamat Datang',
+                    style: ThemeText.heading3
+                        .copyWith(fontWeight: FontWeight.w800),
+                  ),
+                ],
+              ),
+            ).paddingSymmetric(horizontal: Values.horizontalPadding),
             const SizedBox(height: 8),
             Text(
               'Silahkan login untuk melanjutkan',
@@ -37,109 +45,207 @@ class RegisterScreen extends StatelessWidget {
               'assets/images/png/riwayat_medis.png',
               fit: BoxFit.cover,
             ),
-            Form(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
+            Obx(
+              () => Form(
+                key: _formKey,
+                child: AutofillGroup(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            CustomLabel(label: 'Nama Depan'),
-                            SizedBox(height: 8),
-                            CustomTextField(
-                              hint: 'Nama depan',
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const CustomLabel(label: 'Nama Depan'),
+                                const SizedBox(height: 8),
+                                CustomTextField(
+                                  hint: 'Nama depan',
+                                  keyboardType: TextInputType.name,
+                                  autofillHints: const [
+                                    AutofillHints.namePrefix
+                                  ],
+                                  validator: (v) {
+                                    if (v!.isEmpty) {
+                                      return 'Nama depan tidak boleh kosong';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(width: Values.horizontalPadding),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            CustomLabel(label: 'Nama Belakang'),
-                            SizedBox(height: 8),
-                            CustomTextField(
-                              hint: 'Nama belakang',
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 16),
-                  CustomLabel(label: 'No. KTP'),
-                  SizedBox(height: 8),
-                  CustomTextField(hint: 'Masukkan No. KTP anda'),
-                  SizedBox(height: 16),
-                  CustomLabel(label: 'Email'),
-                  SizedBox(height: 8),
-                  CustomTextField(hint: 'Masukkan email anda'),
-                  SizedBox(height: 16),
-                  CustomLabel(label: 'Password'),
-                  SizedBox(height: 8),
-                  CustomTextField(
-                      hint: 'Masukkan password anda',
-                      suffixIcon: IconButton(
-                          onPressed: null,
-                          iconSize: 20,
-                          icon: Icon(Icons.remove_red_eye_outlined))),
-                  SizedBox(height: 16),
-                  CustomLabel(label: 'Konfirmasi Password'),
-                  SizedBox(height: 8),
-                  CustomTextField(
-                    hint: 'Konfirmasi password anda',
-                    suffixIcon: IconButton(
-                        onPressed: null,
-                        iconSize: 20,
-                        icon: Icon(Icons.remove_red_eye_outlined)),
-                  ),
-                  SizedBox(height: 40),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            'Register',
-                            textAlign: TextAlign.center,
                           ),
+                          const SizedBox(width: Values.horizontalPadding),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const CustomLabel(label: 'Nama Belakang'),
+                                const SizedBox(height: 8),
+                                CustomTextField(
+                                  hint: 'Nama belakang',
+                                  keyboardType: TextInputType.name,
+                                  autofillHints: const [
+                                    AutofillHints.nameSuffix
+                                  ],
+                                  validator: (v) {
+                                    if (v!.isEmpty) {
+                                      return 'Nama belakang tidak boleh kosong';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 16),
+                      const CustomLabel(label: 'No. KTP'),
+                      const SizedBox(height: 8),
+                      CustomTextField(
+                        hint: 'Masukkan No. KTP anda',
+                        keyboardType: TextInputType.number,
+                        validator: (v) {
+                          if (v!.isEmpty) {
+                            return 'No. KTP tidak boleh kosong';
+                          } else if (v.length > 16) {
+                            return 'No. KTP tidak boleh lebih dari 16 karakter';
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 16),
+                      const CustomLabel(label: 'Email'),
+                      const SizedBox(height: 8),
+                      CustomTextField(
+                        hint: 'Masukkan email anda',
+                        keyboardType: TextInputType.emailAddress,
+                        autofillHints: const [AutofillHints.email],
+                        validator: (v) {
+                          if (v!.isEmpty) {
+                            return 'Email tidak boleh kosong';
+                          } else if (!GetUtils.isEmail(v)) {
+                            return 'Email tidak valid';
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 16),
+                      const CustomLabel(label: 'Password'),
+                      const SizedBox(height: 8),
+                      CustomTextField(
+                        hint: 'Masukkan password anda',
+                        keyboardType: TextInputType.visiblePassword,
+                        autofillHints: const [
+                          AutofillHints.newPassword,
+                          AutofillHints.password
+                        ],
+                        suffixIcon: IconButton(
+                          onPressed: () =>
+                              controller.isObscuredPassword.toggle(),
+                          iconSize: 20,
+                          color: ThemeColor.textDisabled,
+                          icon: controller.isObscuredPassword.value
+                              ? const Icon(Icons.visibility_outlined)
+                              : const Icon(Icons.visibility_off_outlined),
                         ),
-                        Icon(Icons.arrow_forward),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                  Center(
-                    child: RichText(
-                        text: TextSpan(children: [
-                      TextSpan(
-                          text: 'Sudah punya akun?  ',
-                          style: ThemeText.disabledText),
-                      WidgetSpan(
-                          child: TextButton(
-                        style: TextButton.styleFrom(
-                          padding: EdgeInsets.zero,
-                          minimumSize: Size.zero,
-                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        obscureText: controller.isObscuredPassword.value,
+                        onChanged: (s) => controller.password(s),
+                        validator: (v) {
+                          if (v!.isEmpty) {
+                            return 'Password tidak boleh kosong';
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 16),
+                      const CustomLabel(label: 'Konfirmasi Password'),
+                      const SizedBox(height: 8),
+                      CustomTextField(
+                        hint: 'Konfirmasi password anda',
+                        keyboardType: TextInputType.visiblePassword,
+                        autofillHints: const [
+                          AutofillHints.newPassword,
+                          AutofillHints.password
+                        ],
+                        suffixIcon: IconButton(
+                          onPressed: () =>
+                              controller.isObscuredConfirmPassword.toggle(),
+                          iconSize: 20,
+                          color: ThemeColor.textDisabled,
+                          icon: controller.isObscuredConfirmPassword.value
+                              ? const Icon(Icons.visibility_outlined)
+                              : const Icon(Icons.visibility_off_outlined),
                         ),
-                        onPressed: () => Get.back(),
-                        child: Text(
-                          'Login sekarang',
-                          style: ThemeText.heading7.copyWith(
-                              fontWeight: FontWeight.w600,
-                              fontFamily: 'Proxima Nova'),
+                        obscureText: controller.isObscuredConfirmPassword.value,
+                        onChanged: (s) => controller.confirmPassword(s),
+                        validator: (v) {
+                          if (v != controller.password.value) {
+                            return 'Password tidak sama';
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 40),
+                      ElevatedButton(
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            Get.toNamed(Routes.login);
+                          }
+                        },
+                        child: Row(
+                          children: const [
+                            Expanded(
+                              child: Text(
+                                'Register',
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            Icon(Icons.arrow_forward),
+                          ],
                         ),
-                      ))
-                    ])).paddingSymmetric(horizontal: Values.horizontalPadding),
-                  ),
-                  SizedBox(height: 40),
-                  Center(child: Copyright())
-                ],
-              ).paddingSymmetric(horizontal: Values.horizontalPadding),
+                      ),
+                      const SizedBox(height: 30),
+                      Center(
+                        child: RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'Sudah punya akun?  ',
+                                style: ThemeText.disabledText,
+                              ),
+                              WidgetSpan(
+                                child: TextButton(
+                                  style: TextButton.styleFrom(
+                                    padding: EdgeInsets.zero,
+                                    minimumSize: Size.zero,
+                                    tapTargetSize:
+                                        MaterialTapTargetSize.shrinkWrap,
+                                  ),
+                                  onPressed: () => Get.back(),
+                                  child: Text(
+                                    'Login sekarang',
+                                    style: ThemeText.heading7.copyWith(
+                                      fontWeight: FontWeight.w600,
+                                      fontFamily: 'Proxima Nova',
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ).paddingSymmetric(
+                          horizontal: Values.horizontalPadding,
+                        ),
+                      ),
+                      const SizedBox(height: 40),
+                      const Center(child: Copyright())
+                    ],
+                  ).paddingSymmetric(horizontal: Values.horizontalPadding),
+                ),
+              ),
             )
           ],
         ),
